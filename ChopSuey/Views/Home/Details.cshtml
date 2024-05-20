@@ -1,0 +1,71 @@
+﻿@model UserProfileViewModel
+@{
+    Layout = null;
+}
+
+<html lang="fa">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>جزئیات کاربر</title>
+    <style>
+        body {
+            font-family: 'Shabnam', sans-serif;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">جزئیات کاربر</h1>
+    <p class="title">تاریخ: @DateTime.Now.ToString("yyyy-MM-dd")</p>
+    <table>
+        <thead>
+            <tr>
+                <th>نام</th>
+                <th>نام خانوادگی</th>
+                <th>ایمیل</th>
+                <th>تلفن</th>
+                <th>سن</th>
+                <th>شهر</th>
+                <th>نقش‌ها</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.firstName</td>
+                <td>@Model.lastName</td>
+                <td>@Model.Email</td>
+                <td>@Model.PhoneNumber</td>
+                <td>@Model.age</td>
+                <td>@Model.city</td>
+                <td>@Model.Roles</td>
+            </tr>
+        </tbody>
+    </table>
+    <form asp-controller="Home" asp-action="DownloadPdf"  method="post">
+        <input type="hidden" name="userId" value="@Model.id" />
+        <button type="submit">دانلود PDF</button>
+    </form>
+    <a asp-action="Pdf" asp-controller="Home" class="btn btn-lg btn-primary"> Click</a>
+</body>
+</html>
